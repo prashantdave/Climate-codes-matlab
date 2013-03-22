@@ -1,0 +1,63 @@
+clear all;
+clc;
+
+A = dlmread('/home/prashant/Desktop/nc_data/ECHAM-HAM/T63_WNUD_9year_200103/extracted_data/aerom/geosp.csv',',');
+B = dlmread('/home/prashant/Desktop/nc_data/ECHAM-HAM/T63_WNUD_9year_200103/extracted_data/aerom/aclcv.csv',',');
+var_0 = [];
+var_1 = [];
+[m,n] = size(A);
+count = 1;
+corr_coff = [];
+for i=1:20
+    var_0(:,i,:) = A(:,count:count+20);
+    var_1(:,i,:) = B(:,count:count+20);
+end
+
+
+[p,q,r] = size(var_0);
+for k=0:4
+  for i=1:q
+    for j=1:r
+        corr_coeff = 0;
+        count = 0;
+        
+        if (i+k+1<=q) 
+            corr_coeff = corr(var_0(:,i,j),var_1(:,i+k+1,j)) + corr_coeff;
+            count = count + 1;
+            if (j+k+1 <= r)
+                corr_coeff = corr(var_0(:,i,j),var_1(:,i+k+1,j+k+1)) + corr_coeff;
+                count = count + 1;
+            end
+            if (j-k-1 > 0)
+                corr_coeff = corr(var_0(:,i,j),var_1(:,i+k+1,j-k-1)) + corr_coeff;
+                count = count + 1;
+            end
+        end
+        
+        if (i-k-1> 0) 
+            corr_coeff = corr(var_0(:,i,j),var_1(:,i-k-1,j)) + corr_coeff;
+            count =count + 1;
+            if (j+k+1 <= r)
+                corr_coeff = corr(var_0(:,i,j),var_1(:,i-k-1,j+k+1)) + corr_coeff;
+                count = count + 1;
+            end
+            if (j-k-1 > 0)
+                corr_coeff = corr(var_0(:,i,j),var_1(:,i-k-1,j-k-1)) + corr_coeff;
+                count = count + 1;
+            end
+        end
+        
+        
+        if (j+k+1<=r)
+            corr_coeff = corr(var_0(:,i,j),var_1(:,i,j+k+1)) + corr_coeff;
+            count = count + 1;
+        end
+        if (j-k-1> 0) 
+            corr_coeff = corr(var_0(:,i,j),var_1(:,i,j-k-1)) + corr_coeff;
+            count = count + 1;
+        end
+         
+       Correlation_coeff(k+1,i,j) = corr_coeff/count;
+    end
+  end
+end
