@@ -1,7 +1,7 @@
 clear all;
 clc;
-load ('/home/prashant/Desktop/nc_data/ECHAM-HAM/01/0609/aprl.csv');
-load ('/home/prashant/Desktop/nc_data/ECHAM-HAM/01/0609/aprc.csv');
+load ('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/01/0609/aprl.csv');
+load ('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/01/0609/aprc.csv');
 
 lat = [41.968,  40.103 ,  38.237, 36.372, 34.507,  32.641,  30.776,  28.911, 27.046, 25.180, 23.315, 21.450, 19.585, 17.720, 15.854,  13.991,12.124,  10.259,   8.393, 6.528];
     
@@ -11,9 +11,9 @@ lon = [63.75, 65.625, 67.5, 69.375, 71.25, 73.125, 75.0, 76.875, 78.75, 80.625, 
 A = aprl+aprc;
 
 %B = dlmread('/home/prashant/Desktop/nc_data/ECHAM-HAM/radm/0305/TAU_2D.csv',',');
-dir_path = '~/Desktop/nc_data/ECHAM-HAM/trace/0609';
-files = dir('~/Desktop/nc_data/ECHAM-HAM/nudg/0609/*.csv');
-mat_files_path='/home/prashant/Desktop/nc_data/ECHAM-HAM/nudg/0609/mat_files';
+dir_path = '/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/diag/0609';
+files = dir('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/diag/0609/*.csv');
+mat_files_path='/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/diag/0609/mat_files';
 
 for l = 1:length(files)
     if (files(l).bytes >= 50)
@@ -22,7 +22,9 @@ for l = 1:length(files)
         s(1:end-1)
         B = dlmread(s(1:end-1),',');
     end
-    
+
+    file_name=strcat(mat_files_path,'/',s1,'.mat')
+    if exist(file_name,'file')
     var_0 = [];
     var_1 = [];
     [m,n] = size(A);
