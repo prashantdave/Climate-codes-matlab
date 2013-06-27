@@ -2,11 +2,12 @@ function Spatial_Correlation_significance_test(Threshold)
 
 a = {'01','activ','aeronm','conv','diag','forcing','inputm','nudg','radm','tarcerm','xtsurf'};
 counter=0;
+
 for i=1:length(a)
     
-    dir_path = cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/',a(i),'/0609/mat_files'));
-    mat_files_path=cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/',a(i),'/0609/mat_files/*.mat'))
-    significant_variables_path = cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/',a(i),'/0609/mat_files/significant_variables'));
+    dir_path = cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/0609/',a(i),'/csv_with_altitude/mat_files'));
+    mat_files_path=cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/0609/',a(i),'/csv_with_altitude/mat_files/*.mat'))
+    significant_variables_path = cell2mat(strcat('/home/prashant/Desktop/nc_data/ECHAM-HAM/2001/0609/',a(i),'/csv_with_altitude/mat_files/significant_variables'));
     files = dir(mat_files_path);
 
     for l = 1:length(files)
@@ -23,10 +24,11 @@ for i=1:length(a)
              sigma_z = 1/sqrt(n-3);
              z = (Zr-Z_rho)/sigma_z;
              P = normcdf(z)
+             P_ge_alpha_sum = sum(P >= alpha)
              
-              if (P >= alpha)
+              if (P_ge_alpha_sum > 0)
                   s2=sprintf('%s/',significant_variables_path,s1(1:end-4));
-                  s_mat = sprintf('%s', s2(1:end-1),'.mat');      
+                  s_mat = sprintf('%s', s2(1:end-1),'.mat')
                   save(s_mat);
                   counter = counter+1
               end

@@ -13,7 +13,7 @@ for i=1:length(a)
             s = sprintf('%s/',dir_path,s1);
             load (s(1:end-1));
     
-            n = 420;
+            n = 667;
             alpha = 0.05;
 %            Threshold = 0.7 %Corrleation Coefficient value; H_0 >= 0.7 (null hypothesis) H_a < 0.7 (alternate hypothesis).
     
