@@ -1,18 +1,19 @@
 #!/bin/bash
 #for i in activ forcing radm 
 
-tar -xvzf  T63_WNUD_9year_200604.tgz -C  T63_WNUD_9year_200604
-tar -xvzf  T63_WNUD_9year_200605.tgz -C  T63_WNUD_9year_200605
-tar -xvzf  T63_WNUD_9year_200606.tgz -C  T63_WNUD_9year_200606
-tar -xvzf  T63_WNUD_9year_200607.tgz -C  T63_WNUD_9year_200607
-tar -xvzf  T63_WNUD_9year_200608.tgz -C  T63_WNUD_9year_200608
-tar -xvzf  T63_WNUD_9year_200609.tgz -C  T63_WNUD_9year_200609
+#tar -xvzf  T63_WNUD_9year_200003.tgz -C  T63_WNUD_9year_200003
+#tar -xvzf  T63_WNUD_9year_200004.tgz -C  T63_WNUD_9year_200004
+#tar -xvzf  T63_WNUD_9year_200005.tgz -C  T63_WNUD_9year_200005
+#tar -xvzf  T63_WNUD_9year_200006.tgz -C  T63_WNUD_9year_200006
+#tar -xvzf  T63_WNUD_9year_200007.tgz -C  T63_WNUD_9year_200007
+#tar -xvzf  T63_WNUD_9year_200008.tgz -C  T63_WNUD_9year_200008
+#tar -xvzf  T63_WNUD_9year_200009.tgz -C  T63_WNUD_9year_200009
 
 for i in activ aerom conv diag forcing inputm nudg radm tracerm xtsurf
 do
     echo $i
-    cdo -f nc2 mergetime T63_WNUD_9year_200603/T63_WNUD_10Year_200603.01_$i.nc T63_WNUD_9year_200604/T63_WNUD_10Year_200604.01_$i.nc T63_WNUD_9year_200605/T63_WNUD_10Year_200605.01_$i.nc T63_WNUD_9year_200606/T63_WNUD_10Year_200606.01_$i.nc T63_WNUD_9year_200607/T63_WNUD_10Year_200607.01_$i.nc T63_WNUD_9year_200608/T63_WNUD_10Year_200608.01_$i.nc T63_WNUD_9year_200609/T63_WNUD_10Year_200609.01_$i.nc ../../../Prashant_Data/2006/$i/T63_WNUD_10Year_2006.01_$i.nc
+    cdo -f nc2 mergetime T63_WNUD_9year_200003/T63_WNUD_10Year_200003.01_$i.nc T63_WNUD_9year_200004/T63_WNUD_10Year_200004.01_$i.nc T63_WNUD_9year_200005/T63_WNUD_10Year_200005.01_$i.nc T63_WNUD_9year_200006/T63_WNUD_10Year_200006.01_$i.nc T63_WNUD_9year_200007/T63_WNUD_10Year_200007.01_$i.nc T63_WNUD_9year_200008/T63_WNUD_10Year_200008.01_$i.nc T63_WNUD_9year_200009/T63_WNUD_10Year_200009.01_$i.nc ../../../Prashant_Data/2000/$i/T63_WNUD_10Year_2000.01_$i.nc
 
 done
 
-mutt -s "2006 merging done" prash </dev/null
+mutt -s "2000 merging done" prash </dev/null
