@@ -1,0 +1,35 @@
+digraph "sem.bd" {
+  rankdir=TB;
+  size="5,5";
+  node [fontname="Helvetica" fontsize=20 shape=box];
+  edge [fontname="Helvetica" fontsize=12];
+  center=1;
+  "Aerosol" -> "CDNC" [label="0.395"];
+  "Aerosol" -> "Dimming_indirect" [label="0.782"];
+  "Aerosol" -> "Stability" [label="0.492"];
+  "Aerosol" -> "aprc" [label="-0.369"];
+  "Aerosol" -> "aprl" [label="-0.134"];
+  "CDNC" -> "Cloud_albedo" [label="0.532"];
+  "CDNC" -> "Burden_Time" [label="-0.42"];
+  "Cloud_albedo" -> "Dimming_indirect" [label="0.122"];
+  "Dimming_indirect" -> "aprl" [label="0.101"];
+  "Dimming_indirect" -> "Stability" [label="-0.057"];
+  "Dimming_indirect" -> "st" [label="-0.369"];
+  "st" -> "Evap" [label="-8.808"];
+  "Stability" -> "Evap" [label="-8.41"];
+  "Stability" -> "aprc" [label="-0.005"];
+  "Evap" -> "aprc" [label="-0.565"];
+  "Evap" -> "aprl" [label="0.089"];
+  "Burden_Time" -> "Dimming_indirect" [label="-0.158"];
+  "Burden_Time" -> "aprl" [label="0.546"];
+  "aprl" -> "aprc" [label="-0.106"];
+  "CDNC" -> "CDNC" [label="0.92" dir=both];
+  "Cloud_albedo" -> "Cloud_albedo" [label="0.846" dir=both];
+  "Dimming_indirect" -> "Dimming_indirect" [label="0.393" dir=both];
+  "Stability" -> "Stability" [label="0.897" dir=both];
+  "st" -> "st" [label="0.93" dir=both];
+  "Evap" -> "Evap" [label="0.73" dir=both];
+  "aprc" -> "aprc" [label="0.702" dir=both];
+  "aprl" -> "aprl" [label="0.848" dir=both];
+  "Burden_Time" -> "Burden_Time" [label="0.907" dir=both];
+}
